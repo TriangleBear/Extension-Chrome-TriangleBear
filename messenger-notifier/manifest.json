@@ -1,0 +1,31 @@
+{
+  "manifest_version": 3,
+  "name": "Messenger Notifier",
+  "description": "A Chrome extension to notify you of new messages on Facebook Messenger from specific conversations.",
+  "version": "1.0",
+  "permissions": ["notifications", "storage", "activeTab", "alarms"],
+  "host_permissions": ["https://www.messenger.com/*"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.messenger.com/*"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  },
+  "icons": {
+    "128": "icon.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["icon.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
